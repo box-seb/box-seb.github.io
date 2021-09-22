@@ -10,3 +10,4 @@ Software engineering is a social discipline and so the blog includes topics like
 
 The `Conceptual integrity` name comes from [The Mythical Man-Month](https://en.wikipedia.org/wiki/The_Mythical_Man-Month)
 I like it because it tells a lot about software and generally leads toward simple solutions.
+
