@@ -1,0 +1,53 @@
+---
+layout: post
+title:  "Mermaid"
+date:   2020-01-05
+mermaid: true
+---
+
+[Mermaid](https://mermaid-js.github.io/mermaid/#/README) is a great tool to display diagrams.
+
+To configure Mermaid for Jekyll is like adding dependency on JS library as presented [here](https://mermaid-js.github.io/mermaid/#/n00b-gettingStarted)
+
+### Add JS library to `mermaid.html` file (or create it) in `_includes` folder as follows:
+```
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true});</script>
+```
+
+### Update `head.html` in `_includes` folder by adding inclusion statement just above the `</head>` tag:
+```
+{% if page.mermaid %}
+  {% include mermaid.html %}
+{% endif %}
+```
+
+### Then include Mermaid in front matter on the page:
+```
+---
+layout: post
+title:  "Mermaid"
+date:   2020-01-05
+mermaid: true
+---
+```
+
+### And add a script with `div` class `name=mermaid`:
+```
+<div class="this should be just mermaid">
+flowchart LR
+    A[COVID-19] --> B{lockdown?};
+    B-- Yes -->C[Happy]
+    B-- No -->D(Sad);
+</div>
+```
+
+### The result is as below:
+```
+<div class="mermaid">
+flowchart LR
+    A[COVID-19] --> B{lockdown?};
+    B-- Yes -->C[Happy]
+    B-- No -->D(Sad);
+</div>
+```
