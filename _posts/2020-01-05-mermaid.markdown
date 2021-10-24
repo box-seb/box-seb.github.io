@@ -9,20 +9,27 @@ mermaid: true
 
 To configure Mermaid for Jekyll is like adding dependency on JS library as presented [here](https://mermaid-js.github.io/mermaid/#/n00b-gettingStarted)
 
-### Add JS library to `mermaid.html` file (or create it) in `_includes` folder as follows:
+### Add JavaScript library
+Create `mermaid.html` file in `_includes` folder as follows:
+
 ```
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad:true});</script>
 ```
 
-### Update `head.html` in `_includes` folder by adding inclusion statement just above the `</head>` tag:
+### Include added file
+The example is for [Minima theme](https://github.com/jekyll/minima).
+Update `custom-head.html` in `_includes` folder by adding inclusion statement at the bottom:
+
 ```
-{% if page.mermaid %}
+{% raw %}{% if page.mermaid %}
   {% include mermaid.html %}
-{% endif %}
+{% endif %}{% endraw %}
 ```
 
-### Then include Mermaid in front matter on the page:
+### Use Mermaid
+- Then include Mermaid in front matter on the page:
+
 ```
 ---
 layout: post
@@ -32,22 +39,22 @@ mermaid: true
 ---
 ```
 
-### And add a script with `div` class `name=mermaid`:
+- Add a script with `div` class `name=mermaid`:
+
 ```
-<div class="this should be just mermaid">
+<div class="mermaid">
 flowchart LR
-    A[COVID-19] --> B{lockdown?};
+    A[coffee] --> B{tasty?};
     B-- Yes -->C[Happy]
     B-- No -->D(Sad);
 </div>
 ```
 
 ### The result is as below:
-```
+
 <div class="mermaid">
 flowchart LR
-    A[COVID-19] --> B{lockdown?};
+    A[coffee] --> B{tasty?};
     B-- Yes -->C[Happy]
     B-- No -->D(Sad);
 </div>
-```
