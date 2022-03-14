@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "Git hooks"
+date:   2019-01-23 10:14:14 +1200
+---
+
+
+Located in git repository in folder `.git\hooks\` on Windows.
+
+## Hooks
+
+The usage depends on branching strategy. Example branch name can be:
+```
+BB-1234_FeatureName
+```
+where:
+- `BB-1234` is a ticket/card number used for tracking work i.e. Jira
+- `FeatureName` is a name fo the thing implemented
+
+It is very useful to associate each commit with a ticket/card number so that it is easy to find out why something was implemented. In order to achieve that we can use `Prepare commit message` hook. The hook is going to parse the branch name and extract the ticket/card name and put it in front of the commit message.
+
+
+### Prepare commit message
+Hook file name is `prepare-commit-msg`. As the name says it is a hook that can adjust commit message. Is called by `git commit` with with the name of the file that contains commit message.
+
+Adjust the commit message to put the ticket/card name in front of the commit message:
+```bash
+commit_regex='([A-Z]{2}-[0-9]+|fixup!)'
+branch_name="$(git rev-parse --abbrev-ref HEAD)"
+ticket_name="$(echo $branch_name | grep -P '[A-Z]{2}-[0-9]+' -o)"
+
+if ! grep -iqE "$commit_regex" "$1";
+then
+	echo "$ticket_name" $(cat "$1") > "$1"
+fi
+```
+
+### Commit message
+Hook file name is `commit-msg`. Is called byt `git commit` with one argument, the name of the file that contains commit message. The hook should exit with non zero status to stop the commit. To validate that each commit contains a ticket/card name.
+
+Verify the commit message to have the ticket/card name in front of the commit message:
+```bash
+commit_regex='([A-Z]{2}-[0-9]+|fixup!)'
+error_msg="Commit aborted because commit message is missing a ticket number e.g. 'BB-1234'"
+
+
+if ! grep -iqE "$commit_regex" "$1";
+then
+    echo "$error_msg" >&2
+    exit 1
+fi
+```
