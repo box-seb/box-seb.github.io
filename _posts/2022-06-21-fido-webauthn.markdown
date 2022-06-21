@@ -37,3 +37,4 @@ The underlying platform, similar to password managers, synchronize the cryptogra
 
 When FIDO credentials can't be synchronized because a new device comes from a different platform vendor the access to the service or app can be achieved via aforementioned Bluetooth protocol and secondary device (roaming authenticator) that is already equipped with required credentials.
 
+FIDO2 for dotnet can be found [here](https://github.com/passwordless-lib/fido2-net-lib)
