@@ -34,3 +34,20 @@ Pop stashed changes
 ```
 git stash pop
 ```
+
+# Worktree
+
+Git worktree allows to work with the same repository on multiple branches at the same time without switching them. Every [worktree](https://git-scm.com/docs/git-worktree) is located in dedicated folder therefore it is enough to switch working folder to switch between branches. 
+
+Run both commands below in the root folder of your repo:
+- Create a work tree:
+  
+```
+git worktree add FolderNameOfYourWorktree -b BranchName
+```
+
+- Remove a worktree:
+  
+```
+git worktree remove FolderNameOfYourWorktree
+```
