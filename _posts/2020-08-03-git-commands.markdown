@@ -46,8 +46,8 @@ Run both commands below in the root folder of your repo:
 git worktree add FolderNameOfYourWorktree -b BranchName
 ```
 
-- Remove a worktree:
+- [Remove](https://git-scm.com/docs/git-worktree#Documentation/git-worktree.txt-remove) a worktree:
   
 ```
-git worktree remove FolderNameOfYourWorktree
+git worktree remove -f FolderNameOfYourWorktree
 ```
