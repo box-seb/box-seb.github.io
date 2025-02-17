@@ -35,6 +35,30 @@ Pop stashed changes
 git stash pop
 ```
 
+# Aliases
+
+```
+alias.com=checkout
+alias.st=status
+alias.coms=log --pretty=oneline origin..HEAD
+alias.co=checkout
+alias.com=checkout master
+alias.ce=config --global -e
+alias.up=!git pull --rebase --prune $@ && git submodule update --init --recursive
+alias.cob=checkout -b
+alias.cm=commit -m
+alias.save=!git add -A && git commit -m 'WIP'
+alias.undo=reset HEAD~1 --mixed
+alias.amend=commit --amend --no-edit
+alias.wipe=!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+alias.p=push
+alias.pl=push -u origin HEAD
+alias.pf=push -f
+alias.branch-clean=!f() { git checkout master }
+alias.a=config --list | grep alias
+alias.rbi=rebase -i
+```
+
 # Worktree
 
 Git worktree allows to work with the same repository on multiple branches at the same time without switching them. Every [worktree](https://git-scm.com/docs/git-worktree) is located in dedicated folder therefore it is enough to switch working folder to switch between branches. 
